@@ -1,0 +1,7 @@
+*.class
+*.log
+*.properties
+
+.idea/
+node_modules/
+target/
