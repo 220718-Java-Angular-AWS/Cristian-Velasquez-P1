@@ -13,7 +13,7 @@ public class User {
 
     }
 
-    public User(Integer id, String firstName, String lastName, String email, String password, Integer userTypeID) {
+    public User(String firstName, String lastName, String email, String password, Integer userTypeID) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,6 +45,8 @@ public class User {
     public String getUserType() {
         return userType;
     }
+
+    public  Integer getUserTypeID() {return userTypeID;}
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
