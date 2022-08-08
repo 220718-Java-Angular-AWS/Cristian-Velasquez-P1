@@ -22,7 +22,7 @@ public class User {
         this.userTypeID = userTypeID;
     }
 
-    public Integer geID() {
+    public Integer getID() {
         return id;
     }
 
@@ -44,6 +44,10 @@ public class User {
 
     public String getUserType() {
         return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public  Integer getUserTypeID() {return userTypeID;}
