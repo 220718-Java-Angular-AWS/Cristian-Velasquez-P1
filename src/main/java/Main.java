@@ -1,4 +1,5 @@
 import daos.PersistencePostgres;
+import pojos.Reimbursement;
 import pojos.User;
 
 import java.util.LinkedList;
@@ -13,7 +14,14 @@ public class Main {
         for (User u: users){
             System.out.println(u.getEmail());
         }
-        persistence.communicate().delete(5);
+
+       persistence.setTable("reimbursement");
+
+        List<Reimbursement> reimbursements = persistence.communicate().readAll();
+        for (Reimbursement r: reimbursements){
+            System.out.println(r.getTitle());
+        }
+
         System.out.println("done!");
 
     }

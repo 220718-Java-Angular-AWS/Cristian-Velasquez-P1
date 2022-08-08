@@ -8,13 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public class userDAO implements DatasourceCRUD<User> {
+public class UserDAO implements DatasourceCRUD<User> {
 
     Connection connection;
 
-    public userDAO(Connection connection){
+    public UserDAO(Connection connection){
         this.connection = connection;
     }
 
@@ -47,7 +46,7 @@ public class userDAO implements DatasourceCRUD<User> {
             ResultSet result = pstmt.executeQuery();
 
             if (result.next()) {
-                setUserFields(result, user);
+                setFields(result, user);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,7 +64,7 @@ public class userDAO implements DatasourceCRUD<User> {
             while (results.next()){
                 User user = new User();
 
-                setUserFields(results, user);
+                setFields(results, user);
 
                 userList.add(user);
            }
@@ -108,12 +107,12 @@ public class userDAO implements DatasourceCRUD<User> {
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }
 
-    private void setUserFields(ResultSet results, User user) throws SQLException {
+    private void setFields(ResultSet results, User user) throws SQLException {
         user.setId(results.getInt("user_id"));
         user.setFirstName(results.getString("first_name"));
         user.setLastName(results.getString("last_name"));

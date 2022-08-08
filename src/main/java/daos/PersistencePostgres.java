@@ -1,7 +1,6 @@
 package daos;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -78,7 +77,9 @@ public class PersistencePostgres {
     public DatasourceCRUD communicate(){
         DatasourceCRUD datasourceCRUD = null;
         if (getTable() == "user") {
-            datasourceCRUD = new userDAO(this.connection);
+            datasourceCRUD = new UserDAO(this.connection);
+        } else if (getTable() == "reimbursement") {
+            datasourceCRUD =  new ReimbursementDAO(this.connection);
         }
         return datasourceCRUD;
     }
