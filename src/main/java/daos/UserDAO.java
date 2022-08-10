@@ -13,8 +13,8 @@ public class UserDAO implements DatasourceCRUD<User> {
 
     Connection connection;
 
-    public UserDAO(Connection connection){
-        this.connection = connection;
+    public UserDAO(){
+        this.connection = PersistencePostgres.getConnection();
     }
 
     @Override

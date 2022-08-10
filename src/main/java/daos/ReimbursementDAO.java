@@ -1,7 +1,6 @@
 package daos;
 
 import pojos.Reimbursement;
-import pojos.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,8 +13,8 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
 
     Connection connection;
 
-    public ReimbursementDAO(Connection connection){
-        this.connection = connection;
+    public ReimbursementDAO(){
+        this.connection = PersistencePostgres.getConnection();
     }
 
     @Override
@@ -37,7 +36,7 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
     }
 
     @Override
-    public User read(int id) {
+    public Reimbursement read(int id) {
         Reimbursement reimbursement = new Reimbursement();
         try {
             String sql = "SELECT * FROM reimbursement r INNER JOIN reimbursement_status rs ON r.reimbursement_status_id = rs.reimbursement_status_id WHERE r.reimbursement_id = ?";

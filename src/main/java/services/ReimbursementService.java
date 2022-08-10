@@ -1,36 +1,36 @@
 package services;
 
 import daos.PersistencePostgres;
+import daos.ReimbursementDAO;
 import pojos.Reimbursement;
 
 import java.util.List;
 
 public class ReimbursementService {
-    private PersistencePostgres persistence;
+    private ReimbursementDAO persistence;
 
     public ReimbursementService(){
-        this.persistence = PersistencePostgres.getInstance();
-        this.persistence.setTable("reimbursement");
+        this.persistence = new ReimbursementDAO();
     }
 
     public Reimbursement getReimbursement(int id){
-        return persistence.communicate().read(id);
+        return persistence.read(id);
     }
 
     public List<Reimbursement> getAllReimbursement(){
-        return persistence.communicate().readAll();
+        return persistence.readAll();
     }
 
     public void saveReimbursement(Reimbursement reimbursement){
-        persistence.communicate().create(reimbursement);
+        persistence.create(reimbursement);
     }
 
     public void updateReimbursement(Reimbursement reimbursement){
-        persistence.communicate().update(reimbursement);
+        persistence.update(reimbursement);
     }
 
     public void deleteReimbursement(int id){
-        persistence.communicate().delete(id);
+        persistence.delete(id);
     }
 
 }

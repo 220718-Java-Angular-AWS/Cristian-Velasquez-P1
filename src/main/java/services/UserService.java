@@ -1,36 +1,35 @@
 package services;
 
-import daos.PersistencePostgres;
+import daos.UserDAO;
 import pojos.User;
 
 import java.util.List;
 
 public class UserService {
-    private PersistencePostgres persistence;
+    private UserDAO persistence;
 
     public UserService(){
-        this.persistence = PersistencePostgres.getInstance();
-        this.persistence.setTable("user");
+        this.persistence = new UserDAO();
     }
 
     public User getUser(int id){
-        return persistence.communicate().read(id);
+        return persistence.read(id);
     }
 
     public List<User> getAllUser(){
-        return persistence.communicate().readAll();
+        return persistence.readAll();
     }
 
     public void saveUser(User user){
-        persistence.communicate().create(user);
+        persistence.create(user);
     }
 
     public void updateUser(User user){
-        persistence.communicate().update(user);
+        persistence.update(user);
     }
 
     public void deleteUser(int id){
-        persistence.communicate().delete(id);
+        persistence.delete(id);
     }
 
 }

@@ -9,22 +9,20 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class PersistencePostgres {
-    private Connection connection;
-    private String table;
-    private static PersistencePostgres instance;
+    private static Connection connection;
 
     private PersistencePostgres(){
-        this.connect();
+
     }
 
-    public static PersistencePostgres getInstance(){
-        if (instance == null) {
-            instance = new PersistencePostgres();
+    public static Connection getConnection(){
+        if (connection == null) {
+            connect();
         }
-        return instance;
+        return connection;
     }
 
-    private void connect() {
+    private static void connect() {
         try {
             Properties props = new Properties();
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -53,7 +51,7 @@ public class PersistencePostgres {
             builder.append(schema);
 
             Class.forName(driver);
-            this.connection = DriverManager.getConnection(builder.toString());
+            connection = DriverManager.getConnection(builder.toString());
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -64,24 +62,6 @@ public class PersistencePostgres {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    public String getTable() {
-        return this.table;
-    }
-
-    public void setTable( String table ) {
-        this.table = table;
-    }
-
-    public DatasourceCRUD communicate(){
-        DatasourceCRUD datasourceCRUD = null;
-        if (getTable() == "user") {
-            datasourceCRUD = new UserDAO(this.connection);
-        } else if (getTable() == "reimbursement") {
-            datasourceCRUD =  new ReimbursementDAO(this.connection);
-        }
-        return datasourceCRUD;
     }
 
 }
