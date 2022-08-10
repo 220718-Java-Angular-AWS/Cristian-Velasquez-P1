@@ -37,7 +37,7 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
     }
 
     @Override
-    public Reimbursement read(int id) {
+    public User read(int id) {
         Reimbursement reimbursement = new Reimbursement();
         try {
             String sql = "SELECT * FROM reimbursement r INNER JOIN reimbursement_status rs ON r.reimbursement_status_id = rs.reimbursement_status_id WHERE r.reimbursement_id = ?";
