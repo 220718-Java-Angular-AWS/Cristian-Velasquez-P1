@@ -2,10 +2,7 @@ package daos;
 
 import pojos.Reimbursement;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
     public Reimbursement create(Reimbursement reimbursement) {
         try{
             String sql = "INSERT INTO reimbursement (reimbursement_title, reimbursement_description, reimbursement_status_id, user_id) VALUES (?,?,?,?)";
-            PreparedStatement pstmt = connection.prepareStatement(sql);
+            PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, reimbursement.getTitle());
             pstmt.setString(2, reimbursement.getDescription());
@@ -29,6 +26,13 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
             pstmt.setInt(4, reimbursement.getUserId());
 
             pstmt.executeUpdate();
+            ResultSet ids = pstmt.getGeneratedKeys();
+            System.out.println(ids);
+            if (ids.next()) {
+                Integer id = ids.getInt("reimbursement_id");
+                System.out.println(id);
+                reimbursement.setId(id);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,5 +117,6 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
         reimbursement.setDescription(results.getString("reimbursement_description"));
         reimbursement.setStatusId(results.getInt("reimbursement_status_id"));
         reimbursement.setUserId(results.getInt("user_id"));
+        reimbursement.setStatusTitle(results.getString("reimbursement_status_name"));
     }
 }

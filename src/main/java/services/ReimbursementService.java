@@ -21,8 +21,8 @@ public class ReimbursementService {
         return persistence.readAll();
     }
 
-    public void saveReimbursement(Reimbursement reimbursement){
-        persistence.create(reimbursement);
+    public Reimbursement saveReimbursement(Reimbursement reimbursement){
+        return persistence.create(reimbursement);
     }
 
     public void updateReimbursement(Reimbursement reimbursement){

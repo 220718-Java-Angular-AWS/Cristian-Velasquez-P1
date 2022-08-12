@@ -63,4 +63,6 @@ public class Reimbursement {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
+    public void setStatusTitle(String statusTitle) { this.statusTitle = statusTitle; }
 }

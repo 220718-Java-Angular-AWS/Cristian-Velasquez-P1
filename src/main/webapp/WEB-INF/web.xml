@@ -19,6 +19,22 @@
         <servlet-name>userServlet</servlet-name>
         <url-pattern>/users</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>userServlet</servlet-name>
+        <servlet-class>servlets.UserServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>reimbursementServlet</servlet-name>
+        <url-pattern>/reimbursements</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>reimbursementServlet</servlet-name>
+        <servlet-class>servlets.ReimbursementServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
 
     <!-- CORS FILTER -->
     <filter>
@@ -32,9 +48,4 @@
     </filter-mapping>
     <!-- /CORS FILTER -->
 
-    <servlet>
-        <servlet-name>userServlet</servlet-name>
-        <servlet-class>servlets.UserServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
 </web-app>

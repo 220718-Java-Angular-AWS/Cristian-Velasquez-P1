@@ -23,6 +23,7 @@ public class PersistencePostgres {
     }
 
     private static void connect() {
+        System.out.println("Initializing datasource...");
         try {
             Properties props = new Properties();
             ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -52,6 +53,8 @@ public class PersistencePostgres {
 
             Class.forName(driver);
             connection = DriverManager.getConnection(builder.toString());
+
+            System.out.println("Datasource Initialized!");
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
