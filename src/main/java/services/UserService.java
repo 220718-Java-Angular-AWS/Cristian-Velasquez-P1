@@ -20,8 +20,8 @@ public class UserService {
         return persistence.readAll();
     }
 
-    public void saveUser(User user){
-        persistence.create(user);
+    public User saveUser(User user){
+        return persistence.create(user);
     }
 
     public void updateUser(User user){

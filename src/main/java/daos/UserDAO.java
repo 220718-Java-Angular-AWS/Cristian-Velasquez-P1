@@ -2,10 +2,7 @@ package daos;
 
 import pojos.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,10 +15,10 @@ public class UserDAO implements DatasourceCRUD<User> {
     }
 
     @Override
-    public void create(User user) {
+    public User create(User user) {
         try{
             String sql = "INSERT INTO users (first_name, last_name, email, password, user_type_id) VALUES (?,?,?,?,?)";
-            PreparedStatement pstmt = connection.prepareStatement(sql);
+            PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, user.getFirstName());
             pstmt.setString(2, user.getLastName());
@@ -31,9 +28,17 @@ public class UserDAO implements DatasourceCRUD<User> {
 
             pstmt.executeUpdate();
 
+            ResultSet ids = pstmt.getGeneratedKeys();
+            if (ids.next()) {
+                Integer id = ids.getInt("user_id");
+                user.setId(id);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return user;
     }
 
     @Override

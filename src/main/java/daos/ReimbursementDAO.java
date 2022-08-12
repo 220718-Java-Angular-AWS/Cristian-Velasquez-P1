@@ -18,7 +18,7 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
     }
 
     @Override
-    public void create(Reimbursement reimbursement) {
+    public Reimbursement create(Reimbursement reimbursement) {
         try{
             String sql = "INSERT INTO reimbursement (reimbursement_title, reimbursement_description, reimbursement_status_id, user_id) VALUES (?,?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -33,6 +33,8 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return reimbursement;
     }
 
     @Override
