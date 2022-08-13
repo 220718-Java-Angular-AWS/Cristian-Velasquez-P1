@@ -35,6 +35,16 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>userTypeServlet</servlet-name>
+        <url-pattern>/users-type</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>userTypeServlet</servlet-name>
+        <servlet-class>servlets.UserTypeServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
 
     <!-- CORS FILTER -->
     <filter>

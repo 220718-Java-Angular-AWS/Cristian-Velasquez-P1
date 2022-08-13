@@ -2,7 +2,6 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import pojos.Reimbursement;
-import pojos.User;
 import services.ReimbursementService;
 
 import javax.servlet.*;
@@ -10,7 +9,6 @@ import javax.servlet.http.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 
 public class ReimbursementServlet extends HttpServlet {
 
