@@ -1,6 +1,5 @@
 package services;
 
-import daos.PersistencePostgres;
 import daos.ReimbursementDAO;
 import pojos.Reimbursement;
 

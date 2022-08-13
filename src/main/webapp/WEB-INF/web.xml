@@ -45,6 +45,16 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>reimbursementStatusServlet</servlet-name>
+        <url-pattern>/reimbursements-status</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>reimbursementStatusServlet</servlet-name>
+        <servlet-class>servlets.ReimbursementStatusServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
 
     <!-- CORS FILTER -->
     <filter>

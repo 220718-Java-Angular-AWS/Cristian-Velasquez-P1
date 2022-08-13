@@ -27,10 +27,8 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
 
             pstmt.executeUpdate();
             ResultSet ids = pstmt.getGeneratedKeys();
-            System.out.println(ids);
             if (ids.next()) {
                 Integer id = ids.getInt("reimbursement_id");
-                System.out.println(id);
                 reimbursement.setId(id);
             }
 
