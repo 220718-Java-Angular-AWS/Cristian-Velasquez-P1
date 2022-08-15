@@ -1,0 +1,252 @@
+:root {
+    --color-primary: #007bff;
+
+    --color-gray: #ccc;
+    --color-gray-2: #ebebeb;
+    --color-white: #fff;
+    --color-text: #252525;
+
+    --border-radius: 3px;
+
+    --font-size: 16px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-gray);
+    color: var(--color-text);
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: var(--font-size);
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: var(--color-white);
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+/*************** Header Style ***********************/
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: var(--color-gray-2);
+}
+
+.header__logo {
+    font-size: 30px;
+    padding-right: 10px;
+}
+
+/*************** Heading  ***********************/
+
+h2 {
+    text-align: center;
+    margin: 0 0 20px;
+}
+
+/*************** Btn Styles ***********************/
+
+.btn {
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    background-color: transparent;
+    padding: 5px 10px;
+    font-size: var(--font-size);
+    color: var(--color-text);
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn__primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+}
+
+.btn__primary:hover {
+    background-color: transparent;
+    color: var(--color-primary);
+}
+
+.btn__secondary {
+    border-color: var(--color-primary);
+    background-color: transparent;
+    color: var(--color-primary);
+}
+
+.btn__secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn--active{
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+    pointer-events: none;
+}
+
+
+/*************** Content ***********************/
+
+.content {
+    display: flex;
+    flex-grow: 2;
+}
+
+/*************** Aside ***********************/
+.aside {
+    width: 300px;
+}
+
+.aside__list-type {
+    display: flex;
+    background-color: #ccc;
+    border-left: 2px solid #ebebeb;
+    border-bottom: 2px solid #ebebeb;
+}
+
+.aside__list-type-items {
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 700;
+    border-right: 2px solid #ebebeb;
+}
+
+.aside__list-type-items--active,
+.aside__list-type-items:hover{
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.aside__list-type-items:last-child {
+    flex-grow: 2;
+}
+
+.aside__filter {
+    display: flex;
+    padding: 10px;
+}
+
+.aside__filter label {
+    align-self: center;
+}
+
+.aside__filter-content{
+    flex-grow: 1;
+}
+
+.aside__list {
+    padding: 10px 0;
+}
+
+/*************** List ***********************/
+
+.list {
+    list-style: none;
+}
+
+.list__item {
+    padding: 5px 0;
+    margin: 0 10px;
+    border-bottom: 1px solid var(--color-gray-2);
+}
+
+.list__item > span {
+    display: block;
+}
+
+/*************** Section ***********************/
+
+.content__section {
+    width: calc(100% - 300px);
+    background-color: var(--color-gray-2);
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+
+/*************** Form Style ***********************/
+
+.content__form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.content__form-login {
+    width: 350px;
+}
+
+.content__form-reimbursement {
+    width: 100%;
+}
+
+.form__input,
+.form__textarea{
+    border: 1px solid var(--color-gray);
+    padding: 10px 5px;
+    font-family: inherit;
+    border-radius: var(--border-radius);
+    font-size: inherit;
+    margin-bottom: 20px;
+}
+
+.form__textarea {
+    height: 150px;
+}
+
+.form__input:focus-visible,
+.form__textarea:focus-visible {
+    outline: var(--color-primary) auto 1px;
+}
+
+.form__select {
+    width: 100%;
+    padding: 10px;
+    border: 0;
+    border-bottom: 1px solid var(--color-gray);
+    font-size: inherit;
+    color: var(--color-text);
+}
+
+/*************** Utilities ***********************/
+.u-mb-2{
+    margin-bottom: 20px !important;
+}
+
+.u-ml-2 {
+    margin-left: 20px;
+}
+
+.u-pt-1{
+    padding-top: 10px !important;
+}
+
+.u-pb-1{
+    padding-bottom: 10px !important;
+}

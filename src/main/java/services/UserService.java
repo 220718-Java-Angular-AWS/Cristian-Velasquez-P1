@@ -16,6 +16,18 @@ public class UserService {
         return persistence.read(id);
     }
 
+    public User getUserByEmail(String email) {
+        List<User> userList = this.getAllUser();
+        User user = null;
+        System.out.println(email);
+        for (User u : userList ) {
+            if (u.getEmail().equals(email)) {
+                user = u;
+            }
+        }
+        return user;
+    }
+
     public List<User> getAllUser(){
         return persistence.readAll();
     }

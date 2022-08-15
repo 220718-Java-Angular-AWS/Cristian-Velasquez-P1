@@ -29,12 +29,17 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userId = req.getParameter("id");
+        String userEmail = req.getParameter("email");
 
-        if (userId == null) {
+        if (userId == null && userEmail == null) {
             List<User> userList = service.getAllUser();
             String json = mapper.writeValueAsString(userList);
             resp.getWriter().println(json);
-        } else {
+        } else if( userId == null){
+            User user = service.getUserByEmail(userEmail);
+            String json = mapper.writeValueAsString(user);
+            resp.getWriter().println(json);
+        }else {
             User user = service.getUser(Integer.parseInt(userId));
             String json = mapper.writeValueAsString(user);
             resp.getWriter().println(json);

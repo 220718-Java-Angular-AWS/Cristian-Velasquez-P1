@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Title</title>
 </head>
@@ -12,14 +13,34 @@
                 Reimbursement App
             </div>
             <nav class="header__nav">
-                <button class="btn btn__account">Log In</button>
-                <button class="btn btn__account">Sing Up</button>
+                <button class="btn btn__primary btn__nav" data-page="login">Log In</button>
+                <button class="btn btn__secondary btn__nav" data-page="singup">Sing Up</button>
             </nav>
         </header>
-        <main>
-            <aside></aside>
-            <section></section>
+        <main class="content">
+            <aside class="aside">
+            </aside>
+            <section class="content__section">
+                <div class="login-form">
+
+                    <form action="" class="content__form form content__form-login">
+                        <input class="form__input" type="text" name="email" placeholder="Email">
+                        <input class="form__input" type="password" name="password" placeholder="Password">
+                        <input type="hidden" name="form_type" value="login">
+                        <button class="btn btn__primary btn__submit u-mb-2 u-pb-1 u-pt-1">Sing in</button>
+                    </form>
+                    <!--
+                    <form action="" class="content__form form content__form-login">
+                        <input class="form__input" type="text" name="first_name" placeholder="First Name">
+                        <input class="form__input" type="text" name="last_name" placeholder="Last Name">
+                        <input class="form__input" type="text" name="email" placeholder="Email">
+                        <input class="form__input" type="password" name="password" placeholder="Password">
+                        <button class="btn btn__primary btn__submit u-mb-2 u-pb-1 u-pt-1">Sing in</button>
+                    </form>-->
+                </div>
+            </section>
         </main>
     </div>
+<script src="main.js" type="module"></script>
 </body>
 </html>
