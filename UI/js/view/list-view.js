@@ -4,13 +4,22 @@ import ListType from "./list-type.js";
 class ListView extends View {
     _parentElement = document.querySelector('.aside');
 
+    addHandleClick(handler) {
+        this._parentElement.addEventListener('click', function (e) {
+            const btn = e.target.closest('.list__item');
+            const id = btn.dataset.reimbursementId;
+
+            handler(id);
+        })
+    }
+
     _generateMarkup() {
         return `
             ${ListType.render('reimbursement', false)}
             ${this._filter()}  
             <div class="aside__list">
                 <ul class="list">
-                    ${this._data.map(item => this._itemMarkup(item))}
+                    ${this._data.reimbursementList.map(item => this._itemMarkup(item)).join('')}
                 </ul>
             </div>
         `;
@@ -23,9 +32,7 @@ class ListView extends View {
             <div class="u-ml-2 aside__filter-content">
                 <select class="form__select">
                     <option value>Choose an option</option>
-                    <option value="1">Pending</option>
-                    <option value="2">Approved</option>
-                    <option value="3">Rejected</option>
+                    ${this._data.reimbursementStatusList.map(item => `<option value="${item.statusId}">${item.statusTitle}</option>`)}
                 </select>
            </div>
         </div>

@@ -5,6 +5,9 @@
     --color-gray-2: #ebebeb;
     --color-white: #fff;
     --color-text: #252525;
+    --color-green: #28a745;
+    --color-yellow: #ffc107;
+    --color-red: #dc3545;
 
     --border-radius: 3px;
 
@@ -31,6 +34,10 @@ body {
     color: var(--color-text);
     font-family: 'Nunito Sans', sans-serif;
     font-size: var(--font-size);
+}
+
+p {
+    margin-bottom: 20px;
 }
 
 .wrapper {
@@ -108,6 +115,24 @@ h2 {
     pointer-events: none;
 }
 
+.btn__delete,
+.btn__approve,
+.btn__reject {
+    border: 1px solid var(--color-gray);
+    color: var(--color-white);
+}
+
+.btn__delete {
+    background-color: var(--color-text);
+}
+
+.btn__approve {
+    background-color: var(--color-green);
+}
+
+.btn__reject {
+    background-color: var(--color-red);
+}
 
 /*************** Content ***********************/
 
@@ -170,14 +195,25 @@ h2 {
 }
 
 .list__item {
-    padding: 5px 0;
-    margin: 0 10px;
+    padding: 10px 20px;
     border-bottom: 1px solid var(--color-gray-2);
+    cursor: pointer;
+}
+
+.list__item--active,
+.list__item:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
 .list__item > span {
     display: block;
 }
+
+.list__subtitle {
+    font-size: 10px;
+}
+
 
 /*************** Section ***********************/
 
@@ -189,6 +225,12 @@ h2 {
     padding: 50px;
 }
 
+/*************** reimbursement container  ***********/
+
+.content__reimbursement {
+    width: 100%;
+    max-width: 600px;
+}
 
 /*************** Form Style ***********************/
 
@@ -249,4 +291,12 @@ h2 {
 
 .u-pb-1{
     padding-bottom: 10px !important;
+}
+
+.approved {
+    color: var(--color-green);
+}
+
+.reject {
+    color: var(--color-red);
 }

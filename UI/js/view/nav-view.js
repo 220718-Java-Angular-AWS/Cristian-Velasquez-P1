@@ -12,7 +12,6 @@ class NavView extends View {
             if (!btn) return;
 
             const goTo = btn.dataset.page;
-            console.log(goTo);
 
             handle(goTo);
 
@@ -21,8 +20,8 @@ class NavView extends View {
 
     _generateMarkup() {
         return `
-            <button class="btn btn__secondary btn__nav ${this._data === 'login' ? 'btn--active' : '' }" data-page="login">Log In</button>
-            <button class="btn btn__secondary btn__nav ${this._data === 'singup' ? 'btn--active' : '' }" data-page="singup">Sing Up</button>
+            <!--<button class="btn btn__secondary btn__nav ${this._data === 'login' ? 'btn--active' : '' }" data-page="login">Log In</button>
+            <button class="btn btn__secondary btn__nav ${this._data === 'singup' ? 'btn--active' : '' }" data-page="singup">Sing Up</button>-->
         `;
     }
 
