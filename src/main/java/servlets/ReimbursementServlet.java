@@ -29,9 +29,20 @@ public class ReimbursementServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String reimbursementId = req.getParameter("id");
+        String reimbursementUserId = req.getParameter("user-id");
+        String reimbursementStatusId = req.getParameter("status-id");
 
-        if (reimbursementId == null) {
+
+        if (reimbursementId == null && reimbursementUserId == null && reimbursementStatusId == null) {
             List<Reimbursement> reimbursementList = service.getAllReimbursement();
+            String json = mapper.writeValueAsString(reimbursementList);
+            resp.getWriter().println(json);
+        } else if (reimbursementUserId != null) {
+            List<Reimbursement> reimbursementList = service.getReimbursementByUser(Integer.parseInt(reimbursementUserId));
+            String json = mapper.writeValueAsString(reimbursementList);
+            resp.getWriter().println(json);
+        }else if (reimbursementStatusId != null) {
+            List<Reimbursement> reimbursementList = service.getReimbursementByStatusId(Integer.parseInt(reimbursementStatusId));
             String json = mapper.writeValueAsString(reimbursementList);
             resp.getWriter().println(json);
         } else {
@@ -51,6 +62,9 @@ public class ReimbursementServlet extends HttpServlet {
         while (reqReader.ready()) {
             jsonBuilder.append(reqReader.readLine());
         }
+        System.out.println("----------------------------------");
+        System.out.println(jsonBuilder);
+        System.out.println("----------------------------------");
 
         Reimbursement newReimbursement = mapper.readValue(jsonBuilder.toString(), Reimbursement.class);
 

@@ -49,7 +49,7 @@ class LoginView extends View {
                 <input class="form__input" type="text" name="email" placeholder="Email">
                 <input class="form__input" type="password" name="password" placeholder="Password">
                 <input type="hidden" name="form_type" value="singup">
-                <button class="btn btn__primary btn__submit u-mb-2 u-pb-1 u-pt-1">Sing in</button>
+                <button class="btn btn__primary btn__submit btn__submit-log u-mb-2 u-pb-1 u-pt-1">Sing in</button>
             </form>
             ${this._data.err === true ? '<div class="form__err">All fields are required</div>' : ''}
         `;

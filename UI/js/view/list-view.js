@@ -7,16 +7,30 @@ class ListView extends View {
     addHandleClick(handler) {
         this._parentElement.addEventListener('click', function (e) {
             const btn = e.target.closest('.list__item');
+
+            if (!btn) return;
             const id = btn.dataset.reimbursementId;
 
             handler(id);
         })
     }
 
+    addHandleSelect(handler) {
+        this._parentElement.addEventListener("click", function (e) {
+            e.preventDefault();
+            const btn = e.target.closest('.option');
+
+            if (!btn) return;
+
+            const statusId = btn.dataset.value;
+            handler(statusId);
+        })
+    }
+
     _generateMarkup() {
         return `
-            ${ListType.render('reimbursement', false)}
-            ${this._filter()}  
+            ${this._data.user.userTypeID === 1 ? ListType.render('reimbursement', false) : ''}
+            ${this._data.user.userTypeID === 1 ? this._filter() : ''}
             <div class="aside__list">
                 <ul class="list">
                     ${this._data.reimbursementList.map(item => this._itemMarkup(item)).join('')}
@@ -30,10 +44,9 @@ class ListView extends View {
         <div class="aside__filter">
             <label>Filter by:</label>
             <div class="u-ml-2 aside__filter-content">
-                <select class="form__select">
-                    <option value>Choose an option</option>
-                    ${this._data.reimbursementStatusList.map(item => `<option value="${item.statusId}">${item.statusTitle}</option>`)}
-                </select>
+                <span data-value="0" class="option ${this._data.filter == 0 ? 'option--active' : ''}">All</span>
+                    ${this._data.reimbursementStatusList.map(item => `<span data-value="${item.statusId}" class="option ${this._data.filter == item.statusId ? 'option--active' : ''} ">${item.statusTitle}</span>`).join('')}
+                
            </div>
         </div>
         `
@@ -43,7 +56,7 @@ class ListView extends View {
         return`
         <li class="list__item" data-reimbursement-id="${item.id}">
             <span class="list__title">${item.title}</span>
-            <span class="list__subtitle">${item.statusTitle}</span>
+            <span class="list__subtitle ${item.statusTitle.toLowerCase()}">${item.statusTitle}</span>
         </li>
         `
     }

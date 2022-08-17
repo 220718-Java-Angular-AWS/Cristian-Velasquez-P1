@@ -117,7 +117,8 @@ h2 {
 
 .btn__delete,
 .btn__approve,
-.btn__reject {
+.btn__reject,
+.btn__edit {
     border: 1px solid var(--color-gray);
     color: var(--color-white);
 }
@@ -132,6 +133,10 @@ h2 {
 
 .btn__reject {
     background-color: var(--color-red);
+}
+
+.btn__edit {
+    background-color: var(--color-primary);
 }
 
 /*************** Content ***********************/
@@ -214,6 +219,23 @@ h2 {
     font-size: 10px;
 }
 
+.option {
+    width: calc(50% - 25px);
+    border: 1px solid var(--color-gray);
+    border-radius: 3px;
+    padding: 10px 5px;
+    display: inline-block;
+    float: left;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.option--active {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
 
 /*************** Section ***********************/
 
@@ -276,6 +298,21 @@ h2 {
     color: var(--color-text);
 }
 
+/*************** Table ***********************/
+table {
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr {
+    border-bottom: 1px solid var(--color-gray);
+}
+
+td {
+    padding: 15px 35px 15px 0;
+}
+
 /*************** Utilities ***********************/
 .u-mb-2{
     margin-bottom: 20px !important;
@@ -297,6 +334,11 @@ h2 {
     color: var(--color-green);
 }
 
-.reject {
+.reject,
+.rejected {
     color: var(--color-red);
+}
+
+.pending {
+    color: var(--color-yellow);
 }
