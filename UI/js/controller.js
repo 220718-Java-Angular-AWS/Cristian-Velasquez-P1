@@ -6,7 +6,6 @@ import ListView from "./view/list-view.js";
 import ReimbursementView from "./view/reimbursement-view.js";
 import ListUsersView from "./view/list-users-view.js";
 import UserView from "./view/user-view.js";
-import {loadUserById, updateUser} from "./model.js";
 
 const controlLogin = async function (data) {
     model.setPage(data['form_type']);
@@ -59,6 +58,8 @@ const createReimbursementPage = async function () {
 
 const controlReimbursement = async function (id) {
     await model.loadReimbursementById(id);
+    console.log(model.state.reimbursement);
+    await model.loadUserById(model.state.reimbursement.userId);
 
     ReimbursementView.render(model.state);
 }
@@ -73,6 +74,7 @@ const controlCreateReimbursement = async function (data) {
         await model.createReimbursement(data);
 
     }
+    await model.loadUserById(model.state.reimbursement.userId);
     ReimbursementView.render(model.state);
     await model.loadAllReimbursement(model.state.user);
     await model.loadReimbursementStatus();
@@ -93,6 +95,7 @@ const controlReimbursementAction = async function (data) {
         newData.statusId = 2;
         await model.updateReimbursement(newData);
 
+        await model.loadUserById(model.state.reimbursement.userId);
         ReimbursementView.render(model.state);
         await model.loadAllReimbursement(model.state.user);
         await model.loadReimbursementStatus();
@@ -102,6 +105,7 @@ const controlReimbursementAction = async function (data) {
         newData.statusId = 3;
         await model.updateReimbursement(newData);
 
+        await model.loadUserById(model.state.reimbursement.userId);
         ReimbursementView.render(model.state);
         await model.loadAllReimbursement(model.state.user);
         await model.loadReimbursementStatus();

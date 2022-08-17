@@ -91,8 +91,6 @@ export const loadAllUsers = async function() {
 }
 
 export const updateUser = async function (data) {
-    const dataObj = data;
-    console.log(data);
     const url = `${apiUrl}users`;
     const resp = await fetch(url, {
         method: 'PUT',

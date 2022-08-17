@@ -37,6 +37,10 @@ class ReimbursementView extends View{
                             <td><strong>Status:</strong></td>
                             <td>${this._generateStatusName(this._data.reimbursement.statusId)}</td>
                         </tr>
+                        <tr>
+                            <td><strong>User:</strong></td>    
+                            <td>${this._data.currentUser.firstName} ${this._data.currentUser.lastName}</td>
+                        </tr>
                     </tbody>
                 </table>
                 <div>
