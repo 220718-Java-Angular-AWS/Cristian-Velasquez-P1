@@ -77,6 +77,7 @@ public class UserServlet extends HttpServlet {
             jsonBuilder.append(reqReader.readLine());
         }
         String jsonString = jsonBuilder.toString();
+        System.out.println(jsonString);
         User user = mapper.readValue(jsonString, User.class);
 
         service.updateUser(user);

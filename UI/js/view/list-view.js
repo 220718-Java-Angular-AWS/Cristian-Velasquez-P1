@@ -6,7 +6,7 @@ class ListView extends View {
 
     addHandleClick(handler) {
         this._parentElement.addEventListener('click', function (e) {
-            const btn = e.target.closest('.list__item');
+            const btn = e.target.closest('.list__item-reimbursement');
 
             if (!btn) return;
             const id = btn.dataset.reimbursementId;
@@ -24,6 +24,19 @@ class ListView extends View {
 
             const statusId = btn.dataset.value;
             handler(statusId);
+        })
+    }
+
+    addHandleListType(handler) {
+        this._parentElement.addEventListener("click", function (e) {
+            e.preventDefault();
+            const btn = e.target.closest('.aside__list-type-items');
+
+            if (!btn) return;
+
+            const listType = btn.dataset.value;
+
+            handler(listType);
         })
     }
 
@@ -54,7 +67,7 @@ class ListView extends View {
 
     _itemMarkup(item) {
         return`
-        <li class="list__item" data-reimbursement-id="${item.id}">
+        <li class="list__item list__item-reimbursement" data-reimbursement-id="${item.id}">
             <span class="list__title">${item.title}</span>
             <span class="list__subtitle ${item.statusTitle.toLowerCase()}">${item.statusTitle}</span>
         </li>

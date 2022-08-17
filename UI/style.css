@@ -118,7 +118,8 @@ h2 {
 .btn__delete,
 .btn__approve,
 .btn__reject,
-.btn__edit {
+.btn__edit,
+.btn__edit-user {
     border: 1px solid var(--color-gray);
     color: var(--color-white);
 }
@@ -135,7 +136,8 @@ h2 {
     background-color: var(--color-red);
 }
 
-.btn__edit {
+.btn__edit,
+.btn__edit-user {
     background-color: var(--color-primary);
 }
 

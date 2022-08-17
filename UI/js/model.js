@@ -1,6 +1,7 @@
 
 export const state = {
     user:{},
+    currentUser: {},
     reimbursement:{},
     userList: {},
     reimbursementList: {},
@@ -55,7 +56,16 @@ export const createUser = async function (data) {
     state.user = newData;
 }
 
+export const loadUserById = async function (id) {
+    try {
+        const resp = await fetch(`${apiUrl}users?id=${id}`);
+        const data = await resp.json();
 
+        state.currentUser = data;
+    }catch (err) {
+        console.log(err)
+    }
+}
 
 export const loadUser = async function (email) {
     try {
@@ -66,6 +76,31 @@ export const loadUser = async function (email) {
     }catch (err) {
         console.log(err)
     }
+}
+
+export const loadAllUsers = async function() {
+    try {
+        const url = `${apiUrl}users`;
+        const resp = await fetch(url);
+        const data = await resp.json();
+
+        state.userList = data;
+    }catch (err) {
+        console.log(err)
+    }
+}
+
+export const updateUser = async function (data) {
+    const dataObj = data;
+    console.log(data);
+    const url = `${apiUrl}users`;
+    const resp = await fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
 }
 
 //////////////////////////////////////// Reimbursement ///////////////////////////////////////////

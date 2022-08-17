@@ -4,7 +4,9 @@ import LoginView from "./view/login-view.js";
 import FormReimbursementView from "./view/form-reimbursement-view.js";
 import ListView from "./view/list-view.js";
 import ReimbursementView from "./view/reimbursement-view.js";
-import {setPage} from "./model.js";
+import ListUsersView from "./view/list-users-view.js";
+import UserView from "./view/user-view.js";
+import {loadUserById, updateUser} from "./model.js";
 
 const controlLogin = async function (data) {
     model.setPage(data['form_type']);
@@ -12,7 +14,7 @@ const controlLogin = async function (data) {
         await model.loadUser(data['email']);
 
         if (model.state.user.password === data['password']) {
-            setPage('create');
+            model.setPage('create');
             await createReimbursementPage();
         }else {
             guessPage(model.state.page, true)
@@ -20,15 +22,12 @@ const controlLogin = async function (data) {
     } else {
         await model.createUser(data);
         if (model.state.user.password === data['password']) {
-            setPage('create');
+            model.setPage('create');
             await createReimbursementPage();
         }else {
             guessPage(model.state.page, true);
         }
     }
-
-
-
 }
 
 const guessPage = async function(goTo, err = false) {
@@ -40,7 +39,7 @@ const guessPage = async function(goTo, err = false) {
     if (goTo === 'login' || goTo === 'singup' ) {
         LoginView.render(data);
     }else {
-        setPage('create');
+        model.setPage('create');
         FormReimbursementView.render(model.state);
         await model.loadAllReimbursement(model.state.user);
         await model.loadReimbursementStatus();
@@ -87,7 +86,7 @@ const controlReimbursementAction = async function (data) {
 
     if(data['action'] === 'delete') {
         await model.deleteReimbursementById(data['reimbursementId']);
-        setPage('create');
+        model.setPage('create');
         await createReimbursementPage();
     }else if(data['action'] === 'approve') {
         let newData = model.state.reimbursement;
@@ -125,11 +124,38 @@ const controlSelectStatus = async function(id){
     ListView.render(model.state);
 }
 
+const controlListType = async function(data){
+    if(data === "user") {
+        await model.loadAllUsers();
+        console.log(model.state.userList)
+        ListUsersView.render(model.state);
+    }else {
+        await model.loadAllReimbursement(model.state.user);
+        ListView.render(model.state)
+    }
+}
+
+const controlUserList = async function (id) {
+    await model.loadUserById(id);
+
+    UserView.render(model.state);
+}
+
+const controlUser = async function (data) {
+    await model.updateUser(data);
+
+    await model.loadUserById(data.id);
+    UserView.render(model.state);
+}
+
 export function init() {
     NavView.addHandleClick(guessPage);
     LoginView.addHandleClick(controlLogin);
     ListView.addHandleClick(controlReimbursement);
     ListView.addHandleSelect(controlSelectStatus);
+    ListView.addHandleListType(controlListType);
+    ListUsersView.addHandleClick(controlUserList);
+    UserView.addHandleClick(controlUser)
     FormReimbursementView.addHandleClick(controlCreateReimbursement);
     ReimbursementView.addHandleClick(controlReimbursementAction);
 }
