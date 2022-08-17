@@ -17,13 +17,14 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
     @Override
     public Reimbursement create(Reimbursement reimbursement) {
         try{
-            String sql = "INSERT INTO reimbursement (reimbursement_title, reimbursement_description, reimbursement_status_id, user_id) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO reimbursement (reimbursement_title, reimbursement_description, reimbursement_status_id, user_id, amount) VALUES (?,?,?,?,?)";
             PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             pstmt.setString(1, reimbursement.getTitle());
             pstmt.setString(2, reimbursement.getDescription());
             pstmt.setInt(3, reimbursement.getStatusId());
             pstmt.setInt(4, reimbursement.getUserId());
+            pstmt.setDouble(5, reimbursement.getAmount());
 
             pstmt.executeUpdate();
             ResultSet ids = pstmt.getGeneratedKeys();
@@ -81,13 +82,14 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
     @Override
     public void update(Reimbursement reimbursement) {
         try{
-            String sql = "UPDATE reimbursement SET reimbursement_title = ?, reimbursement_description = ?, reimbursement_status_id = ? WHERE reimbursement_id = ?";
+            String sql = "UPDATE reimbursement SET reimbursement_title = ?, reimbursement_description = ?, reimbursement_status_id = ?, amount = ? WHERE reimbursement_id = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
 
             pstmt.setString(1, reimbursement.getTitle());
             pstmt.setString(2, reimbursement.getDescription());
             pstmt.setInt(3, reimbursement.getStatusId());
-            pstmt.setInt(4, reimbursement.getId());
+            pstmt.setDouble(4, reimbursement.getAmount());
+            pstmt.setInt(5, reimbursement.getId());
 
             pstmt.executeUpdate();
 
@@ -116,5 +118,6 @@ public class ReimbursementDAO implements DatasourceCRUD<Reimbursement> {
         reimbursement.setStatusId(results.getInt("reimbursement_status_id"));
         reimbursement.setUserId(results.getInt("user_id"));
         reimbursement.setStatusTitle(results.getString("reimbursement_status_name"));
+        reimbursement.setAmount(results.getDouble("amount"));
     }
 }

@@ -7,6 +7,15 @@ public class Reimbursement {
     private String statusTitle;
     private Integer statusId;
     private Integer userId;
+    private Double amount;
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
 
     public Reimbursement() {
 

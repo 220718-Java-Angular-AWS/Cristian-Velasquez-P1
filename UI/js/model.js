@@ -25,6 +25,7 @@ const convertArrayToReimbursementObject = function (arr) {
         title: arr['title'],
         description: arr['description'],
         statusId: arr['status_id'],
+        amount: arr['amount'],
         userId: arr['user_id']
     }
 }

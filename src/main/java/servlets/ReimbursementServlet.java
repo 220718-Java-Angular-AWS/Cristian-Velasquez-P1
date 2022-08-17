@@ -62,9 +62,6 @@ public class ReimbursementServlet extends HttpServlet {
         while (reqReader.ready()) {
             jsonBuilder.append(reqReader.readLine());
         }
-        System.out.println("----------------------------------");
-        System.out.println(jsonBuilder);
-        System.out.println("----------------------------------");
 
         Reimbursement newReimbursement = mapper.readValue(jsonBuilder.toString(), Reimbursement.class);
 
@@ -80,11 +77,21 @@ public class ReimbursementServlet extends HttpServlet {
         StringBuilder builder = new StringBuilder();
         BufferedReader reader = req.getReader();
 
+
+
         while (reader.ready()) {
             builder.append(reader.readLine().toString());
         }
+        System.out.println("----------------------------------");
+        System.out.println(builder.toString());
+        System.out.println("----------------------------------");
 
         Reimbursement reimbursement = mapper.readValue(builder.toString(), Reimbursement.class);
+
+        System.out.println("----------------------------------");
+        System.out.println(reimbursement.getAmount());
+        System.out.println("----------------------------------");
+
         service.updateReimbursement(reimbursement);
 
         resp.setStatus(200);
